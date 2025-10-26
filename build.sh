@@ -1,6 +1,14 @@
-set -o erroxit
+#!/bin/sh
+set -e  # detenerse si hay un error
+
+# Instalar dependencias
 pip install -r requirements.txt
 
-python manage.py collectstatic --no-input
+# Ejecutar migraciones
 python manage.py migrate
+
+# Recolectar archivos estáticos
+python manage.py collectstatic --noinput
+
+# Ejecutar seed (si existe)
 python manage.py seed
