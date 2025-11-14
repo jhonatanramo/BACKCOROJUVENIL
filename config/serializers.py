@@ -18,6 +18,7 @@ class IglesiaSerializer(serializers.ModelSerializer):
 
 # Serializer de Usuario
 class UsuarioSerializer(serializers.ModelSerializer):
+    iglesia_nombre = serializers.CharField(source='iglesia.nombre', read_only=True)
     class Meta:
         model = Usuario
         fields = '__all__'

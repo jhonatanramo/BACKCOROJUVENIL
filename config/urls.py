@@ -38,12 +38,12 @@ urlpatterns = [
     path('repertorio/', obtener_repertorio),
     path('repertorio/crear/', crear_repertorio),
     path('repertorio/editar/', editar_repertorio),
-    path('repertorio/eliminar/', eliminar_repertorio),
+    path('repertorios/eliminar/', eliminar_repertorio),
 
     # -----------------------
     # Parrafo
     # -----------------------
-    path('parrafos/', obtener_parrafos),
+    path('parrafos/<int:nro>/', obtener_parrafos),
     path('parrafos/todos', obtener_parrafos_todos),
     path('parrafo/crear/', crear_parrafo),
     path('parrafo/eliminar/', eliminar_parrafo),

@@ -61,12 +61,9 @@ def crear_parrafo(request):
 # Obtener párrafos por repertorio
 # -------------------------------------------------------
 @api_view(['GET'])
-def obtener_parrafos(request):
-    id_Repertorio = request.GET.get('id')
-    if not id_Repertorio:
-        return Response({"error": "Debe proporcionar un id"}, status=status.HTTP_400_BAD_REQUEST)
+def obtener_parrafos(request, nro):
+    parrafos = Parrafo.objects.filter(repertorio=nro).order_by('id')
 
-    parrafos = Parrafo.objects.filter(repertorio=id_Repertorio).order_by('id')
     if not parrafos.exists():
         return Response({"error": "Parrafo no encontrado"}, status=status.HTTP_404_NOT_FOUND)
 

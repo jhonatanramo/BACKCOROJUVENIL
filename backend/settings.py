@@ -63,17 +63,18 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'backend.urls'
 
 # CORS settings
-CORS_ALLOW_ALL_ORIGINS = True  # ✅ Para desarrollo, en producción especifica los orígenes
+# CORS settings
+CORS_ALLOW_ALL_ORIGINS = False  # Más seguro en producción
+
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://coro-juvenil.vercel.app/",
-    "https://coro-juvenil-git-main-jhonatanramos-projects.vercel.app/",
-    "https://coro-juvenil-11c7cukbc-jhonatanramos-projects.vercel.app/",
     "https://coro-juvenil.vercel.app",
     "https://coro-juvenil-git-main-jhonatanramos-projects.vercel.app",
     "https://coro-juvenil-11c7cukbc-jhonatanramos-projects.vercel.app",
 ]
+
+CORS_ALLOW_CREDENTIALS = True
 
 TEMPLATES = [
     {

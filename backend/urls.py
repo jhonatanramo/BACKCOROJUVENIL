@@ -4,5 +4,5 @@ from config.views import home  # importar la vista para la raíz
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('/', include('config.urls')),  # todas las rutas de tu app config
+    path('api/', include('config.urls')),  # todas las rutas de tu app config
 ]

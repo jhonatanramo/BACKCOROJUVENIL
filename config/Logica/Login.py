@@ -5,7 +5,7 @@ from ..models import Usuario
 
 @api_view(['POST'])
 def login(request):
-    fecha = request.data.get('fecha')
+    fecha = request.data.get('fecha_nacimiento')
     usuario = Usuario.objects.filter(fecha_nacimiento=fecha).first()
 
     if not usuario:
@@ -26,6 +26,7 @@ def login(request):
             'nombre': usuario.nombre,
             'apellido_p': usuario.apellido_p,
             'apellido_m': usuario.apellido_m,
+            'url': usuario.url,
         }
     }, status=status.HTTP_200_OK)
 

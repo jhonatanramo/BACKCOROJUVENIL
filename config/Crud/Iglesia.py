@@ -23,15 +23,21 @@ def obtener_iglesia(request):
 
 @api_view(['POST'])
 def crear_iglesia(request):
-    nombre = request.data.get('nombre')
+    data = request.data
+    nombre = data.get("nombre")
+    
     if not nombre:
-        return Response({"error": "Debe proporcionar un nombre"}, status=status.HTTP_400_BAD_REQUEST)
-    serializer = IglesiaSerializer(data={"nombre": nombre})
-    if serializer.is_valid():
-        serializer.save()
-        return Response({"mensaje": "Iglesia creada", "iglesia": serializer.data}, status=status.HTTP_201_CREATED)
-    return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
+        return Response(
+            {"error": "El campo 'nombre' es obligatorio."},
+            status=status.HTTP_400_BAD_REQUEST
+        )
+    
+    iglesia = Iglesia.objects.create(nombre=nombre)
+    
+    return Response(
+        {"success": True, "id": iglesia.id, "nombre": iglesia.nombre},
+        status=status.HTTP_201_CREATED
+    )
 @api_view(['PUT'])
 def editar_iglesia(request):
     id_iglesia = request.data.get('id')
@@ -47,7 +53,8 @@ def editar_iglesia(request):
 
 @api_view(['DELETE'])
 def eliminar_iglesia(request):
-    id_iglesia = request.GET.get('id')
+    data=request.data
+    id_iglesia = data.get('id')
     try:
         iglesia = Iglesia.objects.get(id=id_iglesia)
         iglesia.delete()

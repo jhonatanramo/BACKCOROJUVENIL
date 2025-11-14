@@ -16,7 +16,7 @@ class Usuario(models.Model):
     fecha_nacimiento = models.DateField()
     iglesia = models.ForeignKey(Iglesia, on_delete=models.SET_NULL, null=True, blank=True)
     creado_en = models.DateTimeField(auto_now_add=True)
-
+    url = models.CharField(null=True ,max_length=1750)
     def __str__(self):
         return f"{self.nombre} {self.apellido_p}"
 
