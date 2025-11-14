@@ -26,6 +26,7 @@ def login(request):
             'nombre': usuario.nombre,
             'apellido_p': usuario.apellido_p,
             'apellido_m': usuario.apellido_m,
+            'rol': usuario.rol,
             'url': usuario.url,
         }
     }, status=status.HTTP_200_OK)

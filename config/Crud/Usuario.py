@@ -49,6 +49,36 @@ def crear_usuario(request):
 
     except Exception as e:
         return Response({"error": str(e)}, status=400)
+@api_view(['POST'])
+def crear_usuario_adm(request):
+    data = request.data
+
+    try:
+        usuario = Usuario.objects.create(
+            url=data.get('url'),
+            apellido_p=data.get('apellido_p'),
+            apellido_m=data.get('apellido_m'),
+            nombre=data.get('nombre'),
+            fecha_nacimiento=data.get('fecha_nacimiento'),
+            iglesia_id=data.get('iglesia') ,
+            rol=True
+        )
+
+        return Response({
+            "mensaje": "Usuario creado",
+            "usuario": {
+                "id": usuario.id,
+                "nombre": usuario.nombre,
+                "apellido_p": usuario.apellido_p,
+                "apellido_m": usuario.apellido_m,
+                "fecha_nacimiento": str(usuario.fecha_nacimiento),
+                "iglesia": usuario.iglesia_id,
+                "url": usuario.url
+            }
+        }, status=201)
+
+    except Exception as e:
+        return Response({"error": str(e)}, status=400)
 
 @api_view(['PUT'])
 def editar_usuario(request):

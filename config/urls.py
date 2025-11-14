@@ -28,6 +28,7 @@ urlpatterns = [
     path('usuarios/', obtener_usuarios),
     path('usuario/', obtener_usuario),
     path('usuario/crear/', crear_usuario),
+    path('usuario/crear/adm/', crear_usuario_adm),
     path('usuario/editar/', editar_usuario),
     path('usuario/eliminar/', eliminar_usuario),
 
